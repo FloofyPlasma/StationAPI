@@ -18,6 +18,7 @@ public class BlockFormOnlyHandler {
 
     @EventListener
     private static void registerBlockItem(BlockItemFactoryEvent event) {
-        if (event.block.isAutoItemRegistrationDisabled()) event.cancel();
+        // Intended method unknown at this time - FloofyPlasma
+//        if (event.block.isAutoItemRegistrationDisabled()) event.cancel();
     }
 }

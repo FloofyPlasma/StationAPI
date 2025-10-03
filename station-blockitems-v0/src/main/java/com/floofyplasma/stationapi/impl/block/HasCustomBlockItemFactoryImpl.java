@@ -5,7 +5,7 @@ import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import com.floofyplasma.stationapi.api.StationAPI;
-import net.modificationstation.stationapi.api.block.*;
+import com.floofyplasma.stationapi.api.block.*;
 import com.floofyplasma.stationapi.api.event.block.BlockItemFactoryEvent;
 import com.floofyplasma.stationapi.api.mod.entrypoint.Entrypoint;
 import com.floofyplasma.stationapi.api.mod.entrypoint.EntrypointManager;

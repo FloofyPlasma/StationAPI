@@ -26,8 +26,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Block.class)
 class BlockMixin implements StationBlockItemsBlock {
     @Shadow
-    @Final
-    public static Block[] BLOCKS;
+    @Final // Update signature - FloofyPlasma
+    public static Block[] BY_ID;
 
     @Unique
     private boolean stationapi$disableAutoItemRegistration;
@@ -56,7 +56,7 @@ class BlockMixin implements StationBlockItemsBlock {
             )
     )
     private static BlockItem stationapi_getBlockItem(int blockId, Operation<BlockItem> currentFactory) {
-        Block block = BLOCKS[blockId + ItemRegistry.ID_SHIFT];
+        Block block = BY_ID[blockId + ItemRegistry.ID_SHIFT];
         BlockItemFactoryEvent event = StationAPI.EVENT_BUS.post(
                 BlockItemFactoryEvent.builder()
                         .block(block)

@@ -6,7 +6,7 @@ import net.mine_diver.unsafeevents.event.Cancelable;
 import net.mine_diver.unsafeevents.event.EventPhases;
 import net.minecraft.item.BlockItem;
 import com.floofyplasma.stationapi.api.StationAPI;
-import net.modificationstation.stationapi.api.block.*;
+import com.floofyplasma.stationapi.api.block.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.IntFunction;
