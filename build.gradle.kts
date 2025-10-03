@@ -65,7 +65,7 @@ allprojects {
 
         mappings("aabric:aarn:${project.properties["yarn_mappings"]}:v2")
 
-        modImplementation("babric:fabric-loader:${project.properties["loader_version"]}")
+        modImplementation("net.fabricmc:fabric-loader:${project.properties["loader_version"]}")
 
         "transitiveImplementation"(implementation("org.apache.commons:commons-lang3:3.12.0") as Dependency)
         "transitiveImplementation"(implementation("commons-io:commons-io:2.11.0") as Dependency)
