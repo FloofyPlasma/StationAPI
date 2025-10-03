@@ -16,7 +16,7 @@ include(":station-api-base")
 
 include(":station-registry-api-v0")
 include(":station-world-events-v0")
-include(":station-biome-events-v0")
+// include(":station-biome-events-v0") - Biomes were not added until v1.2.0.
 include(":station-recipes-v0")
 include(":station-items-v0")
 include(":station-blocks-v0")

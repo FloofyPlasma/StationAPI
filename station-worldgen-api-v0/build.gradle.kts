@@ -9,6 +9,6 @@ addModuleDependencies(project,
         "station-registry-api-v0",
         "station-flattening-v0",
         "station-nbt-v0",
-        "station-biome-events-v0",
+        //"station-biome-events-v0",
         "station-blocks-v0"
 )
