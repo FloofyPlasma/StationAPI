@@ -13,8 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(LeavesBlock.class)
 public class LeavesBlockMixin {
 
-    @WrapOperation(method = "onTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlockId(III)I"))
+    @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlockMetadata(III)I"))
     private int makeModdedLogsAndLeavesWork(World instance, int x, int y, int z, Operation<Integer> original) {
+        // Currentlly no block state system - FloofyPlasma
+        /*
         BlockState state = instance.getBlockState(x, y, z);
         if (state.isIn(BlockTags.LOGS)) {
             return Block.LOG.id;
@@ -22,6 +24,7 @@ public class LeavesBlockMixin {
         if (state.isIn(BlockTags.LEAVES)) {
             return Block.LEAVES.id;
         }
+         */
 
         return original.call(instance, x, y, z);
     }

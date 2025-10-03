@@ -1,12 +1,14 @@
 package com.floofyplasma.stationapi.mixin.block;
 
 import net.minecraft.item.Item;
-import net.minecraft.stat.Stat;
-import net.minecraft.stat.Stats;
+//import net.minecraft.stat.Stat;
+//import net.minecraft.stat.Stats;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+// Statistics weren't added until b1.5.
+/*
 @Mixin(Stats.class)
 class StatsMixin {
     @Redirect(
@@ -53,3 +55,4 @@ class StatsMixin {
         return new Stat[Item.ITEMS.length];
     }
 }
+*/

@@ -4,12 +4,9 @@
   "package": "com.floofyplasma.stationapi.mixin.block",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BlockItemMixin",
     "BlockMixin",
     "FireBlockMixin",
-    "LeavesBlockMixin",
-    "SecondaryBlockItemMixin",
-    "StatsMixin"
+    "LeavesBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

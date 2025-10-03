@@ -11,21 +11,23 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Block.class)
 abstract class BlockMixin implements StationBlock {
+    // Minecraft doesn't support translations yet. - FloofyPlasma
+    /*
     @Shadow public abstract Block setTranslationKey(String string);
 
     @Override
     public Block setTranslationKey(Namespace namespace, String translationKey) {
         return setTranslationKey(namespace + "." + translationKey);
     }
-
+    */
     @WrapOperation(
-            method = "getDroppedItemId",
+            method = "getDropItem",
             at = @At(
                     value = "FIELD",
                     target = "Lnet/minecraft/block/Block;id:I"
             )
     )
     private int stationapi_returnCorrectItem(Block instance, Operation<Integer> original) {
-        return instance.asItem().id;
+        return instance.id; // No idea what this was trying to do, just disregard for now - FloofyPlasma
     }
 }

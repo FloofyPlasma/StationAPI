@@ -17,18 +17,20 @@ import java.util.Random;
 
 @Mixin(FireBlock.class)
 abstract class FireBlockMixin {
-    @Shadow protected abstract void method_1822(int i, int j, int k);
+    @Shadow protected abstract void registerBurnProperties(int i, int j, int k);
 
     @Inject(
-            method = "init",
+            method = "<init>",
             at = @At("RETURN")
     )
     private void stationapi_postBurnableRegister(CallbackInfo ci) {
-        StationAPI.EVENT_BUS.post(FireBurnableRegisterEvent.builder().addBurnable(this::method_1822).build());
+        StationAPI.EVENT_BUS.post(FireBurnableRegisterEvent.builder().addBurnable(this::registerBurnProperties).build());
     }
 
+    // Not quite sure what this is trying to do here - FloofyPlasma
+    /*
     @ModifyConstant(
-            method = "onTick",
+            method = "tick",
             constant = {
                     @Constant(
                             intValue = 0,
@@ -43,4 +45,6 @@ abstract class FireBlockMixin {
     private int stationapi_allowInfiniburnBlocks(int constant, World world, int x, int y, int z, Random random) {
         return world.getBlockState(x, y - 1, z).isIn(BlockTags.INFINIBURN) ? 1 : 0;
     }
+
+     */
 }
