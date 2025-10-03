@@ -1,12 +1,12 @@
 // tl;dr, tells us off for using properties for versions. Too bad, we don't like trawling this file for version numbers.
 @file:Suppress("GradlePackageVersionRange")
 
-import net.modificationstation.stationapi.gradle.SubprojectHelpers.addDependencyXML
+import com.floofyplasma.stationapi.gradle.SubprojectHelpers.addDependencyXML
 
 plugins {
     id("maven-publish")
-    id("fabric-loom") version "1.9-SNAPSHOT"
-    id("babric-loom-extension") version "1.9.2"
+    id("fabric-loom") version "1.6-SNAPSHOT"
+    id("babric-loom-extension") version "1.6-SNAPSHOT"
 }
 
 // https://stackoverflow.com/a/40101046 - Even with kotlin, gradle can't get it's shit together.
@@ -27,6 +27,7 @@ allprojects {
         maven(url = "https://maven.glass-launcher.net/babric")
         maven(url = "https://maven.glass-launcher.net/snapshots")
         maven(url = "https://maven.glass-launcher.net/releases")
+        maven(url = "https://floofyplasma.github.io/aabric-libraries")
         maven(url = "https://jitpack.io/")
         mavenCentral()
         exclusiveContent {
@@ -62,9 +63,9 @@ allprojects {
         //to change the versions see the gradle.properties file
         minecraft("com.mojang:minecraft:${project.properties["minecraft_version"]}")
 
-        mappings("net.glasslauncher:biny:${project.properties["yarn_mappings"]}:v2")
+        mappings("aabric:aarn:${project.properties["yarn_mappings"]}:v2")
 
-        modImplementation("net.fabricmc:fabric-loader:${project.properties["loader_version"]}")
+        modImplementation("babric:fabric-loader:${project.properties["loader_version"]}")
 
         "transitiveImplementation"(implementation("org.apache.commons:commons-lang3:3.12.0") as Dependency)
         "transitiveImplementation"(implementation("commons-io:commons-io:2.11.0") as Dependency)
@@ -75,7 +76,7 @@ allprojects {
         "transitiveImplementation"(implementation("com.mojang:datafixerupper:${project.properties["dfu_version"]}") as Dependency)
         "transitiveImplementation"(implementation("maven.modrinth:spasm:${project.properties["spasm_version"]}") as Dependency)
         "transitiveImplementation"(implementation("me.carleslc:Simple-Yaml:1.8.4") as Dependency)
-        "transitiveImplementation"(modImplementation("net.glasslauncher.mods:GlassConfigAPI:${project.properties["gcapi_version"]}") as Dependency)
+        //"transitiveImplementation"(modImplementation("net.glasslauncher.mods:GlassConfigAPI:${project.properties["gcapi_version"]}") as Dependency)
 
         // convenience stuff
         // adds some useful annotations for data classes. does not add any dependencies
@@ -87,10 +88,10 @@ allprojects {
         // adds some useful annotations for miscellaneous uses. does not add any dependencies, though people without the lib will be missing some useful context hints.
         implementation("org.jetbrains:annotations:23.0.0")
 
-        modLocalRuntime("net.glasslauncher.mods:ModMenu:${project.properties["modmenu_version"]}")
-        modLocalRuntime("maven.modrinth:retrocommands:${project.properties["rc_version"]}") {
-            isTransitive = false
-        }
+//        modLocalRuntime("net.glasslauncher.mods:ModMenu:${project.properties["modmenu_version"]}")
+//        modLocalRuntime("maven.modrinth:retrocommands:${project.properties["rc_version"]}") {
+//            isTransitive = false
+//        }
 
         annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")
 
@@ -145,6 +146,12 @@ allprojects {
         options.compilerArgs.add("-XDignore.symbol.file")
         options.isFork = true
         options.forkOptions.executable = System.getProperty("java.home") + "/bin/javac" + (if (System.getProperty("os.name").startsWith("Windows")) ".exe" else "")
+    }
+
+    loom {
+        clientOnlyMinecraftJar()
+        customMinecraftManifest.set("https://floofyplasma.github.io/aabric-libraries/manifests/${project.properties["minecraft_version"]}.json")
+        intermediaryUrl.set("https://floofyplasma.github.io/aabric-libraries/aabric/intermediary/%1\$s/intermediary-%1\$s-v2.jar")
     }
 
     publishing {

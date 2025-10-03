@@ -1,0 +1,26 @@
+package com.floofyplasma.stationapi.impl.vanillafix.client.gui.screen;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import net.minecraft.class_591;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
+import com.floofyplasma.stationapi.api.nbt.NbtHelper;
+import com.floofyplasma.stationapi.impl.world.storage.FlattenedWorldStorage;
+
+import static com.floofyplasma.stationapi.api.StationAPI.NAMESPACE;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class WorldConversionWarning {
+    public static final String
+            ROOT_KEY = "gui." + NAMESPACE + ".worldConversion",
+            FROM_MCREGION_EXPLANATION_KEY = ROOT_KEY + ".fromMcRegionExplanation",
+            TO_MCREGION_EXPLANATION_KEY = ROOT_KEY + ".toMcRegionExplanation",
+            CONVERT_KEY = ROOT_KEY + ".convert";
+
+    public static void warnIfMcRegion(Minecraft minecraft, Screen parentScreen, class_591 worldData, Runnable loadWorld) {
+        if (NbtHelper.getDataVersions(((FlattenedWorldStorage) minecraft.method_2127()).getWorldTag(worldData.method_1956())).contains(NAMESPACE.toString()))
+            loadWorld.run();
+        else minecraft.setScreen(new WarningScreen(parentScreen, loadWorld, FROM_MCREGION_EXPLANATION_KEY, CONVERT_KEY));
+    }
+}

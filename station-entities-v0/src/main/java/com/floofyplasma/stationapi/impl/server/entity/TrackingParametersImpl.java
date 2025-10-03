@@ -1,0 +1,65 @@
+package com.floofyplasma.stationapi.impl.server.entity;
+
+import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.class_488;
+import net.minecraft.class_80;
+import net.minecraft.entity.Entity;
+import com.floofyplasma.stationapi.api.StationAPI;
+import com.floofyplasma.stationapi.api.mod.entrypoint.Entrypoint;
+import com.floofyplasma.stationapi.api.mod.entrypoint.EntrypointManager;
+import com.floofyplasma.stationapi.api.mod.entrypoint.EventBusPolicy;
+import com.floofyplasma.stationapi.api.server.entity.CustomTracking;
+import com.floofyplasma.stationapi.api.server.entity.HasTrackingParameters;
+import com.floofyplasma.stationapi.api.server.entity.TrackingParametersProvider;
+import com.floofyplasma.stationapi.api.server.event.entity.TrackEntityEvent;
+import com.floofyplasma.stationapi.api.util.TriState;
+
+import java.lang.invoke.MethodHandles;
+
+/**
+ * {@link TrackingParametersProvider} implementation class.
+ * @author mine_diver
+ * @see TrackEntityEvent
+ * @see CustomTracking
+ * @see TrackingParametersProvider
+ * @see HasTrackingParameters
+ */
+@Entrypoint(eventBus = @EventBusPolicy(registerInstance = false))
+@EventListener(phase = StationAPI.INTERNAL_PHASE)
+public class TrackingParametersImpl {
+    static {
+        EntrypointManager.registerLookup(MethodHandles.lookup());
+    }
+
+    /**
+     * Handles entity's {@link HasTrackingParameters} annotation if it's present via {@link TrackEntityEvent} hook.
+     * @param event the {@link TrackEntityEvent} event.
+     * @see TrackEntityEvent
+     */
+    @EventListener
+    private static void trackEntity(TrackEntityEvent event) {
+        Class<? extends Entity> entityClass = event.entityToTrack.getClass();
+        if (entityClass.isAnnotationPresent(HasTrackingParameters.class)) {
+            HasTrackingParameters at = entityClass.getAnnotation(HasTrackingParameters.class);
+            track(event.entityTracker, event.trackedEntities, event.entityToTrack, at.trackingDistance(), at.updatePeriod(), at.sendVelocity());
+        }
+    }
+
+    /**
+     * Tracking logic implementation.
+     * @param entityTracker the dimension's tracker instance. Can be used to (un)track entities.
+     * @param trackedEntities the set of tracked entities. Can be used to check if entity is already tracked.
+     * @param entityToTrack the entity that server tries to track.
+     * @param trackingDistance the distance from the player to the entity in blocks within which the entity should be sent to client (tracked).
+     * @param updatePeriod the period in ticks with which the entity updates should be sent to client (position, velocity, etc).
+     * @param sendVelocity whether or not should server send velocity updates to clients (fireballs don't send velocity, because client can calculate it itself, and paintings don't have velocity at all).
+     */
+    public static void track(class_488 entityTracker, class_80 trackedEntities, Entity entityToTrack, int trackingDistance, int updatePeriod, TriState sendVelocity) {
+        if (trackedEntities.method_777(entityToTrack.id))
+            entityTracker.method_1669(entityToTrack);
+        if (sendVelocity == TriState.UNSET)
+            entityTracker.method_1666(entityToTrack, trackingDistance, updatePeriod);
+        else
+            entityTracker.method_1667(entityToTrack, trackingDistance, updatePeriod, sendVelocity.getBool());
+    }
+}

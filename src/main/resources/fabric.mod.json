@@ -4,14 +4,15 @@
   "version": "${version}",
 
   "name": "Station API",
-  "description": "A general use API for Fabric Loader mods on legacy Minecraft versions.",
+  "description": "A general use API for Fabric Loader mods on legacy Minecraft versions. Backported to alpha 1.1.2_01 by FloofyPlasma.",
   "authors": [
-    "Modification Station"
+    "Modification Station",
+    "FloofyPlasma"
   ],
   "contact": {
-    "homepage": "https://glass-launcher.net/repo/mod/stationapi",
-    "sources": "https://github.com/ModificationStation/StationAPI",
-    "issues": "https://github.com/ModificationStation/StationAPI/issues"
+    "homepage": "https://github.com/FloofyPlasma/StationAPI",
+    "sources": "https://github.com/FloofyPlasma/StationAPI",
+    "issues": "https://github.com/FloofyPlasma/StationAPI/issues"
   },
 
   "license": "MIT",
@@ -22,7 +23,7 @@
   "depends": {
     "java": ">=17",
     "fabricloader": "*",
-    "minecraft": "1.0.0-beta.7.3",
+    "minecraft": "1.0.0-alpha.1.2.1",
     "station-api-configuration": "*",
     "station-registry-api-v0": "*",
     "station-world-events-v0": "*",

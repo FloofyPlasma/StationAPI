@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.modificationstation.stationapi.mixin.registry",
+  "package": "com.floofyplasma.stationapi.mixin.registry",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],

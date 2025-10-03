@@ -6,12 +6,13 @@
   "name": "Station Vanilla Checker (v0)",
   "description": "Verifies client mods when it connects to a server, or checks if server is vanilla-friendly.",
   "authors": [
-    "Modification Station"
+    "Modification Station",
+    "FloofyPlasma"
   ],
   "contact": {
-    "homepage": "https://glass-launcher.net/repo/mod/stationapi",
-    "sources": "https://github.com/ModificationStation/StationAPI",
-    "issues": "https://github.com/ModificationStation/StationAPI/issues"
+    "homepage": "https://github.com/FloofyPlasma/StationAPI",
+    "sources": "https://github.com/FloofyPlasma/StationAPI",
+    "issues": "https://github.com/FloofyPlasma/StationAPI/issues"
   },
 
   "license": "MIT",
@@ -20,13 +21,13 @@
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
-      "net.modificationstation.stationapi.impl.network.VanillaChecker"
+      "com.floofyplasma.stationapi.impl.network.VanillaChecker"
     ],
     "stationapi:event_bus_server": [
-      "net.modificationstation.stationapi.impl.server.network.ServerVanillaChecker"
+      "com.floofyplasma.stationapi.impl.server.network.ServerVanillaChecker"
     ],
     "stationapi:event_bus_client": [
-      "net.modificationstation.stationapi.impl.client.network.ClientVanillaChecker"
+      "com.floofyplasma.stationapi.impl.client.network.ClientVanillaChecker"
     ]
   },
   "mixins": [
@@ -35,7 +36,7 @@
 
   "depends": {
     "fabricloader": "*",
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-alpha.1.2.1"
   },
 
   "custom": {

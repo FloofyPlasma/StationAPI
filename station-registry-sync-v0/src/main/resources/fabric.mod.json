@@ -6,12 +6,13 @@
   "name": "Station Registry Sync (v0)",
   "description": "Registry synchronization between server and client.",
   "authors": [
-    "Modification Station"
+    "Modification Station",
+    "FloofyPlasma"
   ],
   "contact": {
-    "homepage": "https://glass-launcher.net/repo/mod/stationapi",
-    "sources": "https://github.com/ModificationStation/StationAPI",
-    "issues": "https://github.com/ModificationStation/StationAPI/issues"
+    "homepage": "https://github.com/FloofyPlasma/StationAPI",
+    "sources": "https://github.com/FloofyPlasma/StationAPI",
+    "issues": "https://github.com/FloofyPlasma/StationAPI/issues"
   },
 
   "license": "MIT",
@@ -20,24 +21,24 @@
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus_server": [
-      "net.modificationstation.stationapi.impl.server.registry.ServerRegistrySender",
-      "net.modificationstation.stationapi.impl.server.registry.ServerRegistrySynchronizer"
+      "com.floofyplasma.stationapi.impl.server.registry.ServerRegistrySender",
+      "com.floofyplasma.stationapi.impl.server.registry.ServerRegistrySynchronizer"
     ],
     "stationapi:event_bus_client": [
-      "net.modificationstation.stationapi.impl.client.registry.ClientServerRegistryRemapper",
-      "net.modificationstation.stationapi.impl.client.registry.ClientRegistryRestorer"
+      "com.floofyplasma.stationapi.impl.client.registry.ClientServerRegistryRemapper",
+      "com.floofyplasma.stationapi.impl.client.registry.ClientRegistryRestorer"
     ],
     "stationapi:event_bus": [
-      "net.modificationstation.stationapi.impl.network.RegistryNetworkingInit"
+      "com.floofyplasma.stationapi.impl.network.RegistryNetworkingInit"
     ],
     "client": [
-      "net.modificationstation.stationapi.impl.client.network.ClientRegistryNetworkingInit"
+      "com.floofyplasma.stationapi.impl.client.network.ClientRegistryNetworkingInit"
     ]
   },
 
   "depends": {
     "fabricloader": "*",
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-alpha.1.2.1"
   },
 
   "custom": {

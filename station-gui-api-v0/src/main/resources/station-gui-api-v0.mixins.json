@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.modificationstation.stationapi.mixin.gui",
+  "package": "com.floofyplasma.stationapi.mixin.gui",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],

@@ -1,0 +1,64 @@
+package com.floofyplasma.sltest.item;
+
+import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.block.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
+import com.floofyplasma.sltest.block.Blocks;
+import com.floofyplasma.sltest.block.VariationBlock;
+import com.floofyplasma.stationapi.api.event.registry.ItemRegistryEvent;
+import com.floofyplasma.stationapi.api.item.tool.TagToolLevel;
+import com.floofyplasma.stationapi.api.item.tool.ToolLevel;
+import com.floofyplasma.stationapi.api.item.tool.ToolMaterialFactory;
+import com.floofyplasma.stationapi.api.registry.BlockRegistry;
+import com.floofyplasma.stationapi.api.registry.ItemRegistry;
+import com.floofyplasma.stationapi.api.tag.TagKey;
+import com.floofyplasma.stationapi.api.template.item.BlockStateItem;
+import com.floofyplasma.stationapi.api.template.item.TemplateDoorItem;
+
+import static com.floofyplasma.sltest.SLTest.NAMESPACE;
+
+public class ItemListener {
+
+    @EventListener
+    public void registerItems(ItemRegistryEvent event) {
+        ToolLevel moddedNode = new TagToolLevel(TagKey.of(BlockRegistry.KEY, NAMESPACE.id("needs_tool_level_modded")));
+        ToolLevel.GRAPH.putEdge(ToolMaterial.STONE.getToolLevel(), moddedNode);
+        ToolLevel.GRAPH.putEdge(moddedNode, ToolMaterial.IRON.getToolLevel());
+        ToolLevel siblingNode = new TagToolLevel(TagKey.of(BlockRegistry.KEY, NAMESPACE.id("needs_tool_level_sibling"))).equivalentToImmediateSiblings();
+        ToolLevel.GRAPH.putEdge(ToolMaterial.STONE.getToolLevel(), siblingNode);
+        ToolLevel.GRAPH.putEdge(siblingNode, ToolMaterial.IRON.getToolLevel());
+        ToolLevel.GRAPH.removeEdge(ToolMaterial.STONE.getToolLevel(), ToolMaterial.IRON.getToolLevel());
+
+        testItem = new ModdedItem(NAMESPACE.id("test_item")).setTranslationKey(NAMESPACE, "testItem"); //8475
+        testMaterial = ToolMaterialFactory.create("testMaterial", 3, Integer.MAX_VALUE, Float.MAX_VALUE, Integer.MAX_VALUE - 2).toolLevel(siblingNode);
+        testPickaxe = new ModdedPickaxeItem(NAMESPACE.id("test_pickaxe"), testMaterial).setTranslationKey(NAMESPACE, "testPickaxe"); //8476
+        testNBTItem = new NBTItem(NAMESPACE.id("nbt_item")).setTranslationKey(NAMESPACE, "nbt_item"); //8477
+        testModelItem = new ModelItem(NAMESPACE.id("model_item")).setMaxCount(1).setTranslationKey(NAMESPACE, "idkSomething");
+        ironOre = event.register(NAMESPACE.id("ironOre"), new Item(ItemRegistry.AUTO_ID)).setTranslationKey(NAMESPACE.id("ironOre"));
+        generatedItem = event.register(NAMESPACE.id("generated_item"), new Item(ItemRegistry.AUTO_ID)).setTranslationKey(NAMESPACE.id("generatedItem"));
+        variationBlockIdle = new BlockStateItem(NAMESPACE.id("variation_block_idle"), Blocks.VARIATION_BLOCK.get().getDefaultState()).setTranslationKey(NAMESPACE, "variationBlockIdle");
+        variationBlockPassive = new BlockStateItem(NAMESPACE.id("variation_block_passive"), Blocks.VARIATION_BLOCK.get().getDefaultState().with(VariationBlock.VARIANT, VariationBlock.Variant.PASSIVE)).setTranslationKey(NAMESPACE, "variationBlockPassive");
+        variationBlockActive = new BlockStateItem(NAMESPACE.id("variation_block_active"), Blocks.VARIATION_BLOCK.get().getDefaultState().with(VariationBlock.VARIANT, VariationBlock.Variant.ACTIVE)).setTranslationKey(NAMESPACE, "variationBlockActive");
+        testShears = new TestShearsItem(NAMESPACE.id("test_shears")).setTranslationKey(NAMESPACE, "test_shears");
+        pacifistSword = new PacifistSwordItem(NAMESPACE.id("pacifist_sword")).setTranslationKey(NAMESPACE, "pacifist_sword");
+        dullPickaxe = new DullPickaxeItem(NAMESPACE.id("dull_pickaxe")).setTranslationKey(NAMESPACE, "dull_pickaxe");
+        fancyDoor = new TemplateDoorItem(NAMESPACE.id("fancy_wood_door"), Material.WOOD, Blocks.FANCY_WOOD_DOOR.get()).setTranslationKey(NAMESPACE, "fancyWoodDoor");
+
+    }
+
+    public static Item testItem;
+    public static ToolMaterial testMaterial;
+    public static Item testPickaxe;
+    public static Item testNBTItem;
+    public static Item testModelItem;
+    public static Item ironOre;
+    public static Item generatedItem;
+    public static Item variationBlockIdle;
+    public static Item variationBlockPassive;
+    public static Item variationBlockActive;
+    public static Item testShears;
+    public static Item pacifistSword;
+    public static Item dullPickaxe;
+    public static Item fancyDoor;
+}

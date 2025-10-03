@@ -1,0 +1,27 @@
+package com.floofyplasma.sltest.gui;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
+import com.floofyplasma.sltest.SLTest;
+import com.floofyplasma.sltest.tileentity.TileEntityFreezer;
+import com.floofyplasma.stationapi.api.client.gui.screen.GuiHandler;
+import com.floofyplasma.stationapi.api.event.registry.GuiHandlerRegistryEvent;
+import com.floofyplasma.stationapi.api.util.Identifier;
+
+public class GuiListener {
+
+    @Environment(EnvType.CLIENT)
+    @EventListener
+    public void registerGuiHandlers(GuiHandlerRegistryEvent event) {
+        event.register(Identifier.of(SLTest.NAMESPACE, "freezer"), new GuiHandler((GuiHandler.ScreenFactoryNoMessage) this::openFreezer, TileEntityFreezer::new));
+    }
+
+    @Environment(EnvType.CLIENT)
+    public Screen openFreezer(PlayerEntity player, Inventory inventoryBase) {
+        return new GuiFreezer(player.inventory, (TileEntityFreezer) inventoryBase);
+    }
+}

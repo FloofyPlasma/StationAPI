@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.modificationstation.stationapi.mixin.dimension",
+  "package": "com.floofyplasma.stationapi.mixin.dimension",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DimensionMixin",

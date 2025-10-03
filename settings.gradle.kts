@@ -3,12 +3,14 @@ pluginManagement {
         maven(url = "https://maven.glass-launcher.net/babric")
         maven(url = "https://maven.fabricmc.net/")
         maven(url = "https://jitpack.io/")
+        maven(url = "https://floofyplasma.github.io/aabric-libraries")
         mavenCentral()
+        mavenLocal()
         gradlePluginPortal()
     }
 }
 
-rootProject.name = "Station API"
+rootProject.name = "Station API a1.1.2_01"
 
 include(":station-api-base")
 

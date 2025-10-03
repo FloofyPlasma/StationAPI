@@ -1,5 +1,5 @@
-import net.modificationstation.stationapi.gradle.SubprojectHelpers.getSubprojectVersion
-import net.modificationstation.stationapi.gradle.SubprojectHelpers.addModuleDependencies
+import com.floofyplasma.stationapi.gradle.SubprojectHelpers.getSubprojectVersion
+
 base.archivesName.set("station-transitive-access-wideners-v0")
 version = getSubprojectVersion(project, "1.0.0")
 
