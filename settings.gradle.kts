@@ -44,7 +44,7 @@ include(":station-vanilla-fix-v0")
 include(":station-resource-loader-v0")
 include(":station-datafixer-v0")
 include(":station-nbt-v0")
-include(":station-gui-api-v0")
+//include(":station-gui-api-v0") - Deeply integrated with networking. // TODO: Backport.
 include(":station-transitive-access-wideners-v0")
 include(":station-maths-v0")
 include(":station-worldgen-api-v0")
