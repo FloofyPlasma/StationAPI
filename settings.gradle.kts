@@ -28,7 +28,7 @@ include(":station-container-api-v0")
 include(":station-player-api-v0")
 include(":station-armor-api-v0")
 include(":station-localization-api-v0")
-include(":station-achievements-v0")
+//include(":station-achievements-v0") - Achievements were not added until b1.4.
 include(":station-keybindings-v0")
 include(":station-renderer-api-v0")
 include(":station-audio-loader-v0")
