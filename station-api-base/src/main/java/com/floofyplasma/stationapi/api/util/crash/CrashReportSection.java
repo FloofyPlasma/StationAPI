@@ -1,8 +1,8 @@
 package com.floofyplasma.stationapi.api.util.crash;
 
 import com.google.common.collect.Lists;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+import net.minecraft.util.math.Vec3i; // Assumed type since I couldn't get a concrete definition on the type. - FloofyPlasma
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -10,15 +10,15 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class CrashReportSection {
-    public static String createPositionString(BlockView world, double x, double y, double z) {
-        return String.format(Locale.ROOT, "%.2f,%.2f,%.2f - %s", x, y, z, CrashReportSection.createPositionString(world, new BlockPos((int) x, (int) y, (int) z)));
+    public static String createPositionString(WorldView world, double x, double y, double z) {
+        return String.format(Locale.ROOT, "%.2f,%.2f,%.2f - %s", x, y, z, CrashReportSection.createPositionString(world, new Vec3i((int) x, (int) y, (int) z)));
     }
 
-    public static String createPositionString(BlockView world, BlockPos pos) {
+    public static String createPositionString(WorldView world, Vec3i pos) {
         return CrashReportSection.createPositionString(world, pos.x, pos.y, pos.z);
     }
 
-    public static String createPositionString(BlockView world, int x, int y, int z) {
+    public static String createPositionString(WorldView world, int x, int y, int z) {
         StringBuilder stringBuilder = new StringBuilder();
 
         try {
