@@ -13,6 +13,8 @@ import java.util.Map;
 
 @Mixin(BlockEntityRenderDispatcher.class)
 class BlockEntityRenderDispatcherMixin {
+    // I do not believe this specific mixin target is possible, as it doesn't seem like this specific ordinal exists - FloofyPlasma
+    /*
     @SuppressWarnings("unchecked")
     @Redirect(
             method = "<init>()V",
@@ -27,4 +29,5 @@ class BlockEntityRenderDispatcherMixin {
         StationAPI.EVENT_BUS.post(BlockEntityRendererRegisterEvent.builder().renderers((Map<Class<? extends BlockEntity>, BlockEntityRenderer>) map).build());
         return ret;
     }
+    */
 }
