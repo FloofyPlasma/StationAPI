@@ -48,5 +48,5 @@ include(":station-gui-api-v0")
 include(":station-transitive-access-wideners-v0")
 include(":station-maths-v0")
 include(":station-worldgen-api-v0")
-include(":station-api-configuration")
+// include(":station-api-configuration") - Glass-Config is currently incompabile.
 include(":station-effects-api-v0")

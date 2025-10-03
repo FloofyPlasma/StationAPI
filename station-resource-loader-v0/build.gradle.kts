@@ -8,5 +8,5 @@ addModuleDependencies(project,
         "station-maths-v0",
         "station-lifecycle-events-v0",
         "station-world-events-v0",
-        "station-api-configuration"
+        //"station-api-configuration"
 )
